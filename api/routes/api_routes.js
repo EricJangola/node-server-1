@@ -48,7 +48,7 @@ apiRouter.delete (endpoint + 'produtos/:id', function (req, res) {
 
 apiRouter.post (endpoint + 'produtos', function (req, res) { 
     const product = req.body;
-    const id = lista_produtos.produtos.length + 1;
+    const id =  Math.max.apply(Math, lista_produtos.produtos.map(function(o) { return o.y; })) + 1;
     lista_produtos.produtos.push({ ...product, id });
     res.status(200).json (lista_produtos) 
 }) 
